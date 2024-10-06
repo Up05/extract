@@ -15,6 +15,7 @@ Currently supported file types: `.gz`, `.tar`, `.rar`, `.zip` & `.7z`.
 
 ```sh
 git clone https://github.com/Up05/extract
+cd extract
 sh compile.sh
 ```
 *Or just run the pre-compiled executable in the repo...*
