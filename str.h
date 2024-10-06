@@ -17,18 +17,26 @@ int str_eq(char* a, char* b) {
     return 1;
 }
 
+int str_slice_eq(char* a, char* b, int len) {
+    for(int i = 0; i < len; i ++) {
+        if(a[i] != b[i]) return 0;
+    }
+    return 1;
+}
+
 int str_contains(char* a, char* b) {
     int len_a = strlen(a),
         len_b = strlen(b);
 
     if(len_a < len_b) return 0;
-    for(int i = 0; len_a < len_b; i ++) {
-        if(str_eq(a, b)) return 1;
+    if(len_b == 0) return 1;
+    while(len_a >= len_b) {
+        if(str_slice_eq(a, b, len_b)) return 1;
         len_a --;
         a ++;
     }
 
-    return 1;
+    return 0;
 }
 
 int str_ends_with(char* str, char* suffix) {
@@ -63,3 +71,5 @@ char* str_concat(int count, char* str, ...) {
     va_end(list);
     return buf;
 }
+
+// Yes, I know, this is slow af

@@ -73,6 +73,8 @@ int main(int argc, char** argv) {
         while((dir_ptr = readdir(dir))) {
             char* filename = dir_ptr->d_name;
 
+            if(!str_contains(filename, filter)) continue;
+
             try_unzip(".gz",  "gzip",  "-d",  filename);     
             try_unzip(".tar", "tar",   "-xf", filename);     
             try_unzip(".rar", "unrar", "",    filename);     
